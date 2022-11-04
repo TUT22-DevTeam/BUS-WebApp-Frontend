@@ -11,6 +11,18 @@
     background-color: rgb(204, 204, 204);
 }
 
-.CMargin{
+.CMargin {
     margin-bottom: 30px;
+}
+
+.CMargin a {
+    color: #000 !important;
+    font-size: 21px;
+}
+
+@media screen and (max-width:480px) {
+    .CMargin a {
+        color: #000 !important;
+        font-size: 17px;
+    }
 }

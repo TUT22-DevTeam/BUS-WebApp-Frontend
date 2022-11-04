@@ -1,7 +1,9 @@
-export default function timeTable(props) {
+import styles from '../styles/components/SelectTimeBox.module.css'
+
+export default function SelectTimeBox(props) {
     return (
         <>
-            <ul className="tab tab-block timetable">
+            <ul className={`tab tab-block ${styles.timeTable}`}>
                 {Object.keys(props.timeAry).map((key) => {
                     return (
                         <li
@@ -15,9 +17,9 @@ export default function timeTable(props) {
                             }>
                             <a onClick={() => {
                                 props.setUserNum(key)
-                                props.setcrowdData(props.currentStaData[key])
+                                props.setcrowdData(props.currentStaData[props.currentStaId][key])
                             }}>
-                                {props.timeAry[key]} <span className="small">時台</span>
+                                {props.timeAry[key]} <span className={styles.small}>時台</span>
                             </a>
                         </li>
                     );

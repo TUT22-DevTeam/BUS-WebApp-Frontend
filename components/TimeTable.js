@@ -1,4 +1,3 @@
-
 import styles from '../styles/components/TimeTable.module.css'
 const crowdImg = ["icons/few.png", "icons/little.png", "icons/medium.png", "icons/many.png"]
 

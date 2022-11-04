@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400');
+@import url('https://css.gg/css');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: rgb(39, 39, 39);
+}
+
+a,
+a:visited,
+a:active {
+    text-decoration: underline;
+    color: inherit;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.margin {
+    margin-top: 50px;
+}
+
+.tab {
+    border-bottom: 0px;
+    background-color: rgb(255, 255, 255);
+}
+
+.tab .tab-item.active a {
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgb(52, 104, 204);
+    color: rgb(255, 255, 255) !important;
+}
+
+.tab .tab-item.celected a {
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgb(127, 128, 129);
+    color: rgb(255, 255, 255) !important;
+}
