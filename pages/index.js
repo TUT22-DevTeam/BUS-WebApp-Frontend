@@ -31,8 +31,6 @@ const data = [
   ]
 ];
 
-console.log(timeAry)
-
 export default function Index() {
   const [currentData, setCurrentData] = useState([]); // 現在の混雑状況のデータ
   const [currentStaId, setCurrentStaId] = useState(0); // 0:八王子駅, 1:八王子みなみ野駅
