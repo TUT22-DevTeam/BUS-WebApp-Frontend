@@ -1,0 +1,59 @@
+.timeBox {
+    margin: 5px;
+    padding: 15px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%);
+}
+
+.middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crwtext {
+    font-size: 50px;
+}
+
+.middleR{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.smallPeople {
+    font-size: 1rem;
+}
+
+.crowicon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width:480px) {
+    .crowicon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto;
+    }
+  
+    .crwtext {
+      font-size: 25px;
+    }
+  
+    .smallPeople {
+      font-size: 10px;
+    }
+  
+    .timeBox {
+      padding: 10px;
+      background-color: #fff;
+      margin-bottom: 15px;
+    }
+  
+    .container form {
+      padding: 10px;
+    }
+  }
