@@ -12,7 +12,7 @@ const getTime = (num) => { // 今からn時間後の時刻を取得する
 
 const busTimeAry = ["00", "10", "20", "30", "40", "50", "60"];
 const timeAry = [...Array(6).keys()].map((d) => { return getTime(d) }); // 今から6時間後の時刻を配列に格納
-const data = [
+const data1 = [ // 駅-大学
   [
     [100, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
@@ -25,28 +25,75 @@ const data = [
     [100000, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
+    [0, 10, 0, 0, 0, 0],
+    [0, 0, 0, 40, 0, 0],
     [0, 0, 0, 0, 0, 0]
   ]
 ];
 
+const data2 = [ // 大学-駅
+  [
+    [1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0]
+  ],
+  [
+    [40, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 10, 0, 0, 0, 0],
+    [0, 0, 0, 40, 0, 0],
+    [0, 0, 0, 0, 0, 0]
+  ]
+];
+
+
 export default function Index() {
   const [currentData, setCurrentData] = useState([]); // 現在の混雑状況のデータ
   const [currentStaId, setCurrentStaId] = useState(0); // 0:八王子駅, 1:八王子みなみ野駅
-  const [crowdData, setcrowdData] = useState(data[0][0]); // 混雑状況のデータ時間別データが入るところ
+  const [crowdData, setcrowdData] = useState([]); // 混雑状況のデータ時間別データが入るところ
   const [selectUserNum, setUserNum] = useState(0); // ユーザーが選択した時刻のインデックス番号
+  const [isSta, setIsSta] = useState(true); // ユーザーが選択した時刻のインデックス番号
 
   useEffect(() => {
-    setCurrentData(data); // データをセット
-  }, []);
+    if (isSta) { // 駅-大学
+      setCurrentData(data1); // データ切り替え(駅発データ)
+      setcrowdData(data1[currentStaId][selectUserNum]);
+    } else { // 大学-駅
+      setCurrentData(data2); // データ切り替え(駅着データ)
+      setcrowdData(data2[currentStaId][selectUserNum]);
+    }
+  }, [isSta, currentStaId, selectUserNum]);
 
   return (
     <div className={`container grid-lg ${styles.boxMain}`}>
       <div className={`col-ms-12 ${styles.mainBox}`}>
         <div className={`container ${styles.CMargin}`}>
-          <SelectStaBox currentStaId={currentStaId} setCurrentStaId={setCurrentStaId} setcrowdData={setcrowdData} currentData={currentData} selectUserNum={selectUserNum} />
-          <SelectTimeBox setcrowdData={setcrowdData} currentStaData={currentData} timeAry={timeAry} selectUserNum={selectUserNum} setUserNum={setUserNum} currentStaId={currentStaId} />
+          <p id="renew" className="swich-m">2022</p>
+          <div className="form-group">
+            <label className="form-switch swich-m">
+              <span>発着 切り替えボタン</span>
+              <input type="checkbox" onChange={() => { setIsSta(!isSta) }} /> {/* 駅発着切り替え */}
+              <i className="form-icon"></i>
+            </label>
+          </div>
+          <SelectStaBox
+            currentStaId={currentStaId}
+            setCurrentStaId={setCurrentStaId}
+            setcrowdData={setcrowdData}
+            currentData={currentData}
+            selectUserNum={selectUserNum}
+            isSta={isSta} />
+          <SelectTimeBox
+            setcrowdData={setcrowdData}
+            currentStaData={currentData}
+            timeAry={timeAry}
+            selectUserNum={selectUserNum}
+            setUserNum={setUserNum}
+            currentStaId={currentStaId} />
         </div>
         <div className="container">
           <TimeTable busTimeAry={busTimeAry} crowdData={crowdData} />

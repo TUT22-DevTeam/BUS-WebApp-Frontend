@@ -4,17 +4,15 @@ const staBox = (props) => {
             <li className={props.currentStaId == 0 ? "tab-item active" : "tab-item"}>
                 <a className="staName" onClick={() => {
                     props.setCurrentStaId(0)
-                    props.setcrowdData(props.currentData[0][props.selectUserNum]) // 八王子駅のデータをセット
                 }}>
-                    八王子<span className="small">駅</span>
+                    八王子<span className="small">駅 {props.isSta ? "着" : "発"}</span>
                 </a>
             </li>
             <li className={!(props.currentStaId == 0) ? "tab-item active" : "tab-item"}>
                 <a className="staName" onClick={() => {
                     props.setCurrentStaId(1)
-                    props.setcrowdData(props.currentData[1][props.selectUserNum]) // 八王子駅のデータをセット
                 }}>
-                    八王子みなみ野<span className="small">駅</span>
+                    八王子みなみ野<span className="small">駅 {props.isSta ? "着" : "発"}</span>
                 </a>
             </li>
         </ul>

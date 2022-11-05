@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import styles from '../styles/components/TimeTable.module.css'
-const crowdImg = ["icons/few.png", "icons/little.png", "icons/medium.png", "icons/many.png"]
+const crowdImg = ["/icons/few.png", "/icons/little.png", "/icons/medium.png", "/icons/many.png"]
 
 /*
 crowdData: 人数データ
@@ -23,7 +24,12 @@ const getBusTime = (crowdData, timeAry) => {
                     </span>
                 </div>
                 <div className="column col-2">
-                    <img className={`${styles.crowicon} ${styles.crowicon}`} src={val >= 100 ? crowdImg[3] : val >= 50 ? crowdImg[2] : val >= 20 ? crowdImg[1] : crowdImg[0]}></img>
+                    <Image
+                        className={`${styles.crowicon} ${styles.crowicon}`}
+                        width={127}
+                        height={127}
+                        src={val >= 100 ? crowdImg[3] : val >= 50 ? crowdImg[2] : val >= 20 ? crowdImg[1] : crowdImg[0]} // 人数のしきい値によって画像を変更
+                        alt='混雑表示アイコン' />
                 </div>
                 <div className={`column col-4 ${styles.middleR}`}><span className={styles.crwtext}>{val} <span className={styles.smallPeople}>人</span></span>
                 </div>

@@ -22,8 +22,9 @@ p {
     margin: 0;
 }
 
-.margin {
-    margin-top: 50px;
+.swich-m {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .tab {
