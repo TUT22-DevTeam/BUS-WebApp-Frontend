@@ -17,7 +17,6 @@ export default function SelectTimeBox(props) {
                             }>
                             <a onClick={() => {
                                 props.setUserNum(key)
-                                props.setcrowdData(props.currentStaData[props.currentStaId][key])
                             }}>
                                 {props.timeAry[key]} <span className={styles.small}>時台</span>
                             </a>

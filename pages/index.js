@@ -10,7 +10,7 @@ const getTime = (num) => { // 今からn時間後の時刻を取得する
   return date.getHours();
 }
 
-const busTimeAry = ["00", "10", "20", "30", "40", "50", "60"];
+const busTimeAry = ["0", "10", "20", "30", "40", "50", "60"];
 const timeAry = [...Array(6).keys()].map((d) => { return getTime(d) }); // 今から6時間後の時刻を配列に格納
 const data1 = [ // 駅-大学
   [
@@ -26,7 +26,7 @@ const data1 = [ // 駅-大学
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 10, 0, 0, 0, 0],
-    [0, 0, 0, 40, 0, 0],
+    [0, 0, 0, 900, 0, 0],
     [0, 0, 0, 0, 0, 0]
   ]
 ];
@@ -44,29 +44,25 @@ const data2 = [ // 大学-駅
     [40, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
-    [0, 10, 0, 0, 0, 0],
+    [0, 30, 0, 0, 0, 0],
     [0, 0, 0, 40, 0, 0],
     [0, 0, 0, 0, 0, 0]
   ]
 ];
 
-
 export default function Index() {
   const [currentData, setCurrentData] = useState([]); // 現在の混雑状況のデータ
   const [currentStaId, setCurrentStaId] = useState(0); // 0:八王子駅, 1:八王子みなみ野駅
-  const [crowdData, setcrowdData] = useState([]); // 混雑状況のデータ時間別データが入るところ
   const [selectUserNum, setUserNum] = useState(0); // ユーザーが選択した時刻のインデックス番号
   const [isSta, setIsSta] = useState(true); // ユーザーが選択した時刻のインデックス番号
 
   useEffect(() => {
     if (isSta) { // 駅-大学
       setCurrentData(data1); // データ切り替え(駅発データ)
-      setcrowdData(data1[currentStaId][selectUserNum]);
     } else { // 大学-駅
       setCurrentData(data2); // データ切り替え(駅着データ)
-      setcrowdData(data2[currentStaId][selectUserNum]);
     }
-  }, [isSta, currentStaId, selectUserNum]);
+  }, [isSta]);
 
   return (
     <div className={`container grid-lg ${styles.boxMain}`}>
@@ -83,12 +79,10 @@ export default function Index() {
           <SelectStaBox
             currentStaId={currentStaId}
             setCurrentStaId={setCurrentStaId}
-            setcrowdData={setcrowdData}
             currentData={currentData}
             selectUserNum={selectUserNum}
             isSta={isSta} />
           <SelectTimeBox
-            setcrowdData={setcrowdData}
             currentStaData={currentData}
             timeAry={timeAry}
             selectUserNum={selectUserNum}
@@ -96,7 +90,11 @@ export default function Index() {
             currentStaId={currentStaId} />
         </div>
         <div className="container">
-          <TimeTable busTimeAry={busTimeAry} crowdData={crowdData} />
+          <TimeTable
+            busTimeAry={busTimeAry}
+            currentData={currentData}
+            currentStaId={currentStaId}
+            selectUserNum={selectUserNum} />
         </div>
       </div >
     </div>

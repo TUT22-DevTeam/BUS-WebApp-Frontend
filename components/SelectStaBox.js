@@ -1,4 +1,4 @@
-const staBox = (props) => {
+export default function SelectStaBox(props) {
     return (
         <ul className="tab tab-block">
             <li className={props.currentStaId == 0 ? "tab-item active" : "tab-item"}>
@@ -16,11 +16,5 @@ const staBox = (props) => {
                 </a>
             </li>
         </ul>
-    )
-}
-
-export default function SelectStaBox(props) {
-    return (
-        !(props.currentData.length == 0) ? staBox(props) : <p>エラーが発生しました</p>
     )
 }
