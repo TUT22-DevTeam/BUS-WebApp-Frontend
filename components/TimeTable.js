@@ -39,7 +39,7 @@ const getBusTime = (currentData, timeAry, currentStaId, selectUserNum) => {
     return lists;
 }
 
-export default function timeTable(props) {
+export default function TimeTable(props) {
     if (props.currentData) {
         if (props.currentData.length == 2) { // データが2つ存在する場合(空配列エラーを回避)
             return (

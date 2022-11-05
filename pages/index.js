@@ -22,7 +22,7 @@ const data1 = [ // 駅-大学
     [0, 0, 0, 0, 0, 0]
   ],
   [
-    [100000, 0, 0, 0, 0, 0],
+    [10000, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 10, 0, 0, 0, 0],
@@ -57,11 +57,7 @@ export default function Index() {
   const [isSta, setIsSta] = useState(true); // ユーザーが選択した時刻のインデックス番号
 
   useEffect(() => {
-    if (isSta) { // 駅-大学
-      setCurrentData(data1); // データ切り替え(駅発データ)
-    } else { // 大学-駅
-      setCurrentData(data2); // データ切り替え(駅着データ)
-    }
+    isSta ? setCurrentData(data1) : setCurrentData(data2); // 発着切り替え
   }, [isSta]);
 
   return (
@@ -79,20 +75,16 @@ export default function Index() {
           <SelectStaBox
             currentStaId={currentStaId}
             setCurrentStaId={setCurrentStaId}
-            currentData={currentData}
-            selectUserNum={selectUserNum}
             isSta={isSta} />
           <SelectTimeBox
-            currentStaData={currentData}
             timeAry={timeAry}
             selectUserNum={selectUserNum}
-            setUserNum={setUserNum}
-            currentStaId={currentStaId} />
+            setUserNum={setUserNum} />
         </div>
         <div className="container">
           <TimeTable
-            busTimeAry={busTimeAry}
             currentData={currentData}
+            busTimeAry={busTimeAry}
             currentStaId={currentStaId}
             selectUserNum={selectUserNum} />
         </div>
