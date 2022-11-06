@@ -50,30 +50,40 @@ const data2 = [ // 大学-駅
   ]
 ];
 
+const notification = (event) => { // プッシュ通知送出関数
+  if (event) { // イベント名が存在する場合
+    new Notification("TUTバスアプリ", {
+      body: `${event.name}のバス乗車アンケートにご協力ください！\nこの通知をクリックすることでご協力いただけます。\nよろしくお願いいたします。`,
+    });
+  } else {
+    if ("Notification" in window) { // 通知が有効にできるか確認
+      const permission = Notification.permission;
+      if (permission === "denied" || permission === "granted") { // 通知が許可されていたらストップ
+        return;
+      }
+      // 通知の許可を求める
+      Notification.requestPermission();
+    }
+  }
+}
+
 export default function Index() {
   const [currentData, setCurrentData] = useState([]); // 現在の混雑状況のデータ
   const [currentStaId, setCurrentStaId] = useState(0); // 0:八王子駅, 1:八王子みなみ野駅
   const [selectUserNum, setUserNum] = useState(0); // ユーザーが選択した時刻のインデックス番号
   const [isSta, setIsSta] = useState(true); // ユーザーが選択した時刻のインデックス番号
+  const [notice, setNotice] = useState(0); // 通知を行うミリ秒保管用
 
   useEffect(() => {
     isSta ? setCurrentData(data1) : setCurrentData(data2); // 発着切り替え
-    if ("Notification" in window) {
-      // 通知が許可されていたら早期リターン
-      const permission = Notification.permission;
-      if (permission === "denied" || permission === "granted") {
-        return;
-      }
-      // 通知の許可を求める
-      Notification.requestPermission().then(() => new Notification("通知が許可されました"));
-    }
+    //notification({ name: "今朝" });
   }, [isSta]);
 
   return (
     <div className={`container grid-lg ${styles.boxMain}`}>
       <div className={`col-ms-12 ${styles.mainBox}`}>
         <div className={`container ${styles.CMargin}`}>
-          <span className={`${styles.renew} ${styles.renewMsg}`}><i class="gg-check-o icon"></i>最新のデータに更新されました(3秒前)</span>
+          <span className={`${styles.renew} ${styles.renewMsg}`}><i className="gg-check-o icon"></i>最新のデータに更新されました(3秒前)</span>
           <div className="form-group">
             <label className={`form-switch ${styles.swichM}`}>
               <span>発着 切り替えボタン</span>
