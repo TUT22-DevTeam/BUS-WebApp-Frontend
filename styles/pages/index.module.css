@@ -20,9 +20,25 @@
     font-size: 21px;
 }
 
+.swichM {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.renew {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #088b55;
+}
+
 @media screen and (max-width:480px) {
     .CMargin a {
         color: #000 !important;
         font-size: 16px;
+    }
+
+    .renew {
+        font-size: 14px;
     }
 }
