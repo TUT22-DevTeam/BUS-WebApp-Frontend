@@ -11,7 +11,7 @@ const getTime = (num) => { // 今からn時間後の時刻を取得する
 }
 
 const busTimeAry = ["0", "10", "20", "30", "40", "50", "60"];
-const timeAry = [...Array(6).keys()].map((d) => { return getTime(d) }); // 今から6時間後の時刻を配列に格納
+const timeAry = [...Array(6).keys()].map((d) => { return getTime(d) }); // 現在時刻から6時間後の時刻を配列に格納
 const data1 = [ // 駅-大学
   [
     [100, 0, 0, 0, 0, 0],
@@ -58,15 +58,24 @@ export default function Index() {
 
   useEffect(() => {
     isSta ? setCurrentData(data1) : setCurrentData(data2); // 発着切り替え
+    if ("Notification" in window) {
+      // 通知が許可されていたら早期リターン
+      const permission = Notification.permission;
+      if (permission === "denied" || permission === "granted") {
+        return;
+      }
+      // 通知の許可を求める
+      Notification.requestPermission().then(() => new Notification("通知が許可されました"));
+    }
   }, [isSta]);
 
   return (
     <div className={`container grid-lg ${styles.boxMain}`}>
       <div className={`col-ms-12 ${styles.mainBox}`}>
         <div className={`container ${styles.CMargin}`}>
-          <p id="renew" className="swich-m">2022</p>
+          <span className={`${styles.renew} ${styles.renewMsg}`}><i class="gg-check-o icon"></i>最新のデータに更新されました(3秒前)</span>
           <div className="form-group">
-            <label className="form-switch swich-m">
+            <label className={`form-switch ${styles.swichM}`}>
               <span>発着 切り替えボタン</span>
               <input type="checkbox" onChange={() => { setIsSta(!isSta) }} /> {/* 駅発着切り替え */}
               <i className="form-icon"></i>
@@ -88,7 +97,7 @@ export default function Index() {
             currentStaId={currentStaId}
             selectUserNum={selectUserNum} />
         </div>
-      </div >
+      </div>
     </div>
   )
 }
