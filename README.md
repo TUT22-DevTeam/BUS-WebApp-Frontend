@@ -5,7 +5,7 @@ We are developing a web application for the BUS project. The application will be
 If you want to run the development server, you can run the following command:
 
 ## First, install dependencies
-[NOTICE] You need to install Node.js and npm before running the following command.
+[NOTICE] You need to install Node.js and  before running the following command.
 ```bash
 yarn install
 ```
