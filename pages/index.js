@@ -58,15 +58,6 @@ export default function Index() {
 
   useEffect(() => {
     isSta ? setCurrentData(data1) : setCurrentData(data2); // 発着切り替え
-    if ("Notification" in window) {
-      // 通知が許可されていたら早期リターン
-      const permission = Notification.permission;
-      if (permission === "denied" || permission === "granted") {
-        return;
-      }
-      // 通知の許可を求める
-      Notification.requestPermission().then(() => new Notification("通知が許可されました"));
-    }
   }, [isSta]);
 
   return (
