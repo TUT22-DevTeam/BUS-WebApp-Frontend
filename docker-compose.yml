@@ -1,0 +1,12 @@
+version: "3"
+services:
+  bus-webapp-front:
+    build: .
+    ports:
+      - "3000:3000"
+    container_name: bus-webapp-front
+    volumes:
+      - ./app:/app
+    environment:
+      TZ: Asia/Tokyo
+    command: yarn dev

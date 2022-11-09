@@ -4,15 +4,9 @@ We are developing a web application for the BUS project. The application will be
 # How to run
 If you want to run the development server, you can run the following command:
 
-## First, install dependencies
-[NOTICE] You need to install Node.js and yarn before running the following command.
+[NOTICE] You need to install Docker and Docker-Compose(v2) before running the following command.
 ```bash
-yarn install
-```
-
-## Second, run the development server
-```bash
-yarn dev
+$ docker compose up -d
 ```
 
 ## Third, open the browser
