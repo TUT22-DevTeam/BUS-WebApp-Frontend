@@ -64,7 +64,7 @@ export default function Index() {
     <div className={`container grid-lg ${styles.boxMain}`}>
       <div className={`col-ms-12 ${styles.mainBox}`}>
         <div className={`container ${styles.CMargin}`}>
-          <span className={`${styles.renew} ${styles.renewMsg}`}><i class="gg-check-o icon"></i>最新のデータに更新されました(3秒前)</span>
+          <span className={`${styles.renew} ${styles.renewMsg}`}><i className="gg-check-o icon"></i>最新のデータに更新されました(3秒前)</span>
           <div className="form-group">
             <label className={`form-switch ${styles.swichM}`}>
               <span>発着 切り替えボタン</span>

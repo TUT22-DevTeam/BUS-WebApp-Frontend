@@ -48,7 +48,7 @@ export default function TimeTable(props) {
         } else {
             return (
                 <div className={`columns ${styles.errorBox}`}>
-                    <div className="column text-center"><div class="loading loading-lg m-2"></div> しばらくお待ち下さい...</div>
+                    <div className="column text-center"><div className="loading loading-lg m-2"></div> しばらくお待ち下さい...</div>
                 </div>
             )
         }
