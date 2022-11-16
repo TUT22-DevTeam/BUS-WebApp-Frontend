@@ -7,6 +7,12 @@ services:
     container_name: bus-webapp-front
     volumes:
       - ./app:/app
+      # マウント時にホスト側が優先される仕様のため，"yarn install"時にコンテナ側のnode_modulesが消えてしまう．(*1)
+      # コンテナ側のnode_modulesを保持するよう変更．
+      - node_modules:/app/node_modules
     environment:
       TZ: Asia/Tokyo
     command: yarn dev
+# (*1)対策で追記
+volumes:
+  node_modules:
