@@ -32,6 +32,16 @@
     color: #088b55;
 }
 
+.loadBox{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.loadMargin{
+    margin-right: 10px;
+}
+
 @media screen and (max-width:480px) {
     .CMargin a {
         color: #000 !important;
