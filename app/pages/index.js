@@ -72,6 +72,7 @@ export default function Index() {
   const [currentStaId, setCurrentStaId] = useState(0); // 0:八王子駅, 1:八王子みなみ野駅
   const [selectUserNum, setUserNum] = useState(0); // ユーザーが選択した時刻のインデックス番号
   const [isSta, setIsSta] = useState(true); // ユーザーが選択した時刻のインデックス番号
+  const [isLoading, setIsLoading] = useState(false); // データの読み込みが完了しているかどうか
   const [notice, setNotice] = useState(0); // 通知を行うミリ秒保管用
 
   useEffect(() => {
@@ -83,7 +84,7 @@ export default function Index() {
     <div className={`container grid-lg ${styles.boxMain}`}>
       <div className={`col-ms-12 ${styles.mainBox}`}>
         <div className={`container ${styles.CMargin}`}>
-          <span className={`${styles.renew} ${styles.renewMsg}`}><i className="gg-check-o icon"></i>最新のデータに更新されました(3秒前)</span>
+          {isLoading ? <div className={styles.loadBox}><span class={`loader ${styles.loadMargin}`}></span> データ取得中です...</div> : <div className={`${styles.renew} ${styles.renewMsg}`}><i className="gg-check-o icon"></i> 最新のデータに更新されました</div>}
           <div className="form-group">
             <label className={`form-switch ${styles.swichM}`}>
               <span>発着 切り替えボタン</span>
