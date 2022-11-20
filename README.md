@@ -8,6 +8,4 @@ If you want to run the development server, you can run the following command:
 ```bash
 $ docker compose up -d
 ```
-
-## Third, open the browser
-You can open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After that, you can open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
